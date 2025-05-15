@@ -27,7 +27,7 @@
   --subtask-color: #efefef;   /* Cor de fundo ou borda para subtarefas */
 
   /* Dimensões de Layout */
-  --layout-overhead: 210px; /* Altura combinada de elementos fixos no topo (header, filtros) para cálculo de altura de containers */
+  --layout-overhead: 160px; /* Altura combinada de elementos fixos no topo (header, filtros) para cálculo de altura de containers */
 }
 
 /* -------------------------------------------------------------------------- */
