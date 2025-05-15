@@ -1,32 +1,60 @@
+/****** Arquivo CSS Reorganizado - Foco em Manutenção e Leitura ******/
+
 /**
- * Dashboard de Tarefas - SUNO
- * styles.css - Estilos reorganizados e otimizados
+ * @file styles.css
+ * @description Folha de estilos principal para o Dashboard de Tarefas.
+ * @project Dashboard de Tarefas - SUNO
  */
 
-/* Variáveis */
+/* -------------------------------------------------------------------------- */
+/*                                  VARIÁVEIS GLOBAIS                         */
+/* -------------------------------------------------------------------------- */
+
 :root {
-  --primary-color: #ffc801;
-  --accent-color: #ffc801;
-  --text-color: #333333;
-  --bg-color: #ffffff;
-  --card-bg: #ffffff;
-  --priority-high: #ff4136;
-  --priority-medium: #ffdc00;
-  --priority-low: #2ecc40;
-  --hover-color: #f0f0f0;
-  --subtask-color: #efefef;
+  --primary-color: #ffc801; /* Cor primária principal, usada para destaques e elementos ativos */
+  --accent-color: #ffc801;  /* Cor de destaque, sinônimo da primária neste tema */
+  --text-color: #333333;    /* Cor padrão para textos */
+  --bg-color: #ffffff;       /* Cor de fundo principal da aplicação */
+  --card-bg: #ffffff;      /* Cor de fundo para cards e seções similares */
+
+  /* Cores de Prioridade */
+  --priority-high: #ff4136;   /* Vermelho para prioridade alta */
+  --priority-medium: #ffdc00; /* Amarelo para prioridade média */
+  --priority-low: #2ecc40;    /* Verde para prioridade baixa */
+
+  /* Cores Auxiliares */
+  --hover-color: #f0f0f0;     /* Cor para efeito hover em elementos interativos */
+  --subtask-color: #efefef;   /* Cor de fundo ou borda para subtarefas */
+
+  /* Dimensões de Layout */
+  --layout-overhead: 210px; /* Altura combinada de elementos fixos no topo (header, filtros) para cálculo de altura de containers */
 }
 
-/* ========== ESTILOS BÁSICOS ========== */
+/* -------------------------------------------------------------------------- */
+/*                                  ESTILOS DE BASE E RESET                   */
+/* -------------------------------------------------------------------------- */
 
-/* Estilos Gerais */
+html {
+  font-size: 10px; /* Base para o modo compacto, pode ser ajustado */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body {
-  font-family: "Inter", sans-serif;
-  background-color: #f8f9fa;
-  color: var(--text-color);
   margin: 0;
   padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa; /* Um cinza claro para o fundo geral */
+  color: var(--text-color);
+  line-height: 1.6;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  LAYOUT PRINCIPAL                          */
+/* -------------------------------------------------------------------------- */
 
 .app-container {
   display: flex;
@@ -34,14 +62,27 @@ body {
   min-height: 100vh;
 }
 
-/* Header e Navegação */
 .app-header {
   background-color: #222;
   color: white;
-  padding: 1rem 0;
+  padding: 0.5rem 1rem; /* Ajustado para modo compacto */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Considerar z-index se houver sobreposição */
 }
 
+.app-footer {
+  background-color: #222;
+  color: white;
+  padding: 1rem 0;
+  margin-top: auto; /* Garante que o footer fique no final da página */
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  COMPONENTES COMUNS                        */
+/* -------------------------------------------------------------------------- */
+
+/* ----- Logo ----- */
 .logo-container {
   display: flex;
   align-items: center;
@@ -61,12 +102,13 @@ body {
   color: white;
 }
 
+/* ----- Navegação ----- */
 .nav-link {
+  padding: 0.5rem 1rem;
   color: #ccc;
   text-decoration: none;
-  padding: 0.5rem 1rem;
   border-radius: 4px;
-  transition: all 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .nav-link:hover {
@@ -80,36 +122,44 @@ body {
   font-weight: 500;
 }
 
-/* Cards e Containers */
+/* ----- Cards ----- */
 .card {
+  margin-bottom: 1.5rem;
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
-  overflow: hidden;
+  overflow: hidden; /* Para conter elementos filhos com bordas arredondadas */
+  background-color: var(--card-bg);
 }
 
 .card-header {
-  background-color: var(--card-bg);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 1rem 1.25rem;
+  background-color: var(--card-bg); /* Pode ser diferente do corpo do card se necessário */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .filter-card {
-  background-color: var(--card-bg);
+  /* Herda estilos de .card, mas pode ter especificidades */
+  margin-bottom: .5rem; /* Ajustado para modo compacto */
 }
 
-.timeline-container {
-  height: 800px;
-  background-color: var(--card-bg);
+.filter-card .card-body {
+  padding: .75rem 1rem; /* Ajustado para modo compacto */
+  gap: .75rem; /* Para flex/grid layouts internos */
 }
 
-/* Botões e Controles */
+/* ----- Botões ----- */
 .btn {
-  border-radius: 6px;
+  padding: 0.25rem 0.5rem; /* Ajustado para modo compacto */
+  font-size: 0.8rem;      /* Ajustado para modo compacto */
   font-weight: 500;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s;
+  border-radius: 6px;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid transparent; /* Base para botões com borda */
 }
 
 .btn-accent {
@@ -119,7 +169,7 @@ body {
 }
 
 .btn-accent:hover {
-  background-color: #e6ae00;
+  background-color: #e6ae00; /* Escurecer a cor no hover */
   border-color: #e6ae00;
   color: #222;
 }
@@ -135,28 +185,21 @@ body {
   color: #333;
 }
 
-.timeline-controls {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* ========== COMPONENTES ========== */
-
-/* Indicadores de Estado */
+/* ----- Indicadores de Estado (Loading) ----- */
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100%; /* Ocupa a altura do container pai */
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f3f3 !important;
-  border-top: 4px solid var(--accent-color) !important;
   border-radius: 50%;
+  border: 4px solid #f3f3f3; /* Cor de fundo do spinner */
+  border-top-color: var(--accent-color); /* Cor da animação */
   animation: spin 1s linear infinite;
 }
 
@@ -165,11 +208,7 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-.text-accent {
-  color: var(--accent-color) !important;
-}
-
-/* Indicadores de Prioridade */
+/* ----- Indicadores de Prioridade (Dots Genéricos) ----- */
 .priority-dot {
   display: inline-block;
   width: 12px;
@@ -177,19 +216,17 @@ body {
   border-radius: 50%;
 }
 
-.priority-high, .priority-dot.high { 
-  background-color: var(--priority-high) !important; 
-}
+/* Classes de utilidade para prioridade, podem ser aplicadas a .priority-dot ou outros elementos */
+.priority-high { background-color: var(--priority-high); }
+.priority-medium { background-color: var(--priority-medium); }
+.priority-low { background-color: var(--priority-low); }
 
-.priority-medium, .priority-dot.medium { 
-  background-color: var(--priority-medium) !important; 
-}
+/* Combinações específicas para .priority-dot */
+.priority-dot.high { background-color: var(--priority-high); }
+.priority-dot.medium { background-color: var(--priority-medium); }
+.priority-dot.low { background-color: var(--priority-low); }
 
-.priority-low, .priority-dot.low { 
-  background-color: var(--priority-low) !important; 
-}
-
-/* Filtros e Opções */
+/* ----- Filtros e Opções ----- */
 .filtro-group {
   min-width: 200px;
 }
@@ -210,15 +247,21 @@ body {
 .task-type-checkbox input[type="checkbox"] {
   width: 16px;
   height: 16px;
+  /* Estilos customizados para checkbox podem ser adicionados aqui */
 }
 
-/* Legenda */
+.task-type-checkbox label,
+.form-select { /* Estilo para modo compacto */
+  font-size: .8rem;
+}
+
+/* ----- Legenda ----- */
 .legend-container {
-  padding: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
   justify-content: center;
+  gap: 1.5rem; /* Espaçamento principal entre itens */
+  padding: .25rem .5rem; gap: .75rem;
   background-color: var(--card-bg);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -226,7 +269,7 @@ body {
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.5rem; /* Espaçamento entre a cor e o texto */
 }
 
 .legend-color {
@@ -235,6 +278,7 @@ body {
   border-radius: 4px;
 }
 
+/* ----- Indicadores de Tarefa (Geral) ----- */
 .task-indicator {
   position: relative;
   width: 16px;
@@ -247,132 +291,153 @@ body {
   opacity: 0.85;
 }
 
-/* Estilos para hierarquia */
+/* ----- Estilos para Hierarquia em Selects ----- */
 select option[disabled] {
   font-weight: 600;
   background-color: #f8f9fa;
 }
 
 select option {
-  padding-left: 20px !important;
+  padding-left: 20px; /* Evitar !important se possível, verificar se há outra forma de aplicar */
 }
 
-/* Notificações */
+/* ----- Notificações (Toast) ----- */
 .toast-container {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 1050;
+  z-index: 1050; /* Acima da maioria dos elementos */
 }
 
-/* Footer */
-.app-footer {
-  background-color: #222;
-  color: white;
-  padding: 1rem 0;
-  margin-top: auto;
+/* ----- Modal Backdrop ----- */
+.modal.fade.show {
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 1050; /* Mesmo z-index do toast ou ajustar conforme necessidade */
 }
 
-/* ========== TIMELINE VIS.JS ========== */
+/* -------------------------------------------------------------------------- */
+/*                                  ESTILOS DA TIMELINE (VIS.JS)              */
+/* -------------------------------------------------------------------------- */
 
-/* Estilos básicos de itens da timeline */
+/* ----- Container da Timeline ----- */
+.timeline-container {
+  height: calc(100vh - var(--layout-overhead));
+  background-color: var(--card-bg);
+}
+
+.timeline-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ----- Itens Básicos da Timeline (vis-item) ----- */
 .vis-item {
-  border-radius: 999px !important;
-  border-width: 0 !important;
+  border-radius: 999px; /* Estilo "pílula" */
+  border-width: 0;
   font-family: "Inter", sans-serif;
   font-size: 0.85rem;
   min-width: 80px;
-  cursor: pointer !important;
-  overflow: visible !important;
-  z-index: 2;
-  box-sizing: border-box !important;
+  cursor: pointer;
+  overflow: visible; /* Permitir que conteúdo customizado (tooltips, etc.) transborde */
+  z-index: 2; /* Base z-index para itens */
+  box-sizing: border-box;
+  /* !important foi removido de border-radius, border-width, cursor, overflow, box-sizing.
+     Verificar se a biblioteca vis.js sobrescreve esses estilos e se !important é realmente necessário. */
 }
 
 .vis-item .vis-item-content {
-  border-radius: 999px !important;
-  padding: 6px 16px !important;
-  overflow: visible !important;
+  border-radius: 999px;
+  padding: 6px 16px;
+  overflow: visible;
   white-space: nowrap;
   text-overflow: ellipsis;
+  /* !important foi removido de border-radius, padding, overflow */
 }
 
-/* Prioridades de tarefas */
+/* ----- Prioridades de Tarefas na Timeline ----- */
 .vis-item.task-priority-high {
-  background-color: var(--priority-high) !important;
-  border-color: var(--priority-high) !important;
-  color: white !important;
+  background-color: var(--priority-high);
+  color: white;
   box-shadow: 0 2px 4px rgba(255, 65, 54, 0.2);
+  /* !important removido de background-color, border-color (já é 0), color */
 }
 
 .vis-item.task-priority-medium {
-  background-color: var(--priority-medium) !important;
-  border-color: var(--priority-medium) !important;
-  color: #333 !important;
+  background-color: var(--priority-medium);
+  color: #333;
   box-shadow: 0 2px 4px rgba(255, 220, 0, 0.2);
+  /* !important removido */
 }
 
 .vis-item.task-priority-low {
-  background-color: var(--priority-low) !important;
-  border-color: var(--priority-low) !important;
-  color: white !important;
+  background-color: var(--priority-low);
+  color: white;
   box-shadow: 0 2px 4px rgba(46, 204, 64, 0.2);
+  /* !important removido */
 }
 
-/* Seleção e hover */
+/* ----- Seleção e Hover de Itens na Timeline ----- */
 .vis-item.vis-selected {
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0 0 0 3px rgba(255, 200, 1, 0.5) !important;
-  z-index: 10 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.5); /* Usar variável para a cor do shadow */
+  z-index: 10; /* Acima de outros itens não selecionados */
+  /* !important removido */
 }
 
 .vis-item:hover {
-  z-index: 5 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  z-index: 5; /* Acima de itens normais, abaixo de selecionados */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* !important removido */
 }
 
-/* Subtarefas */
+/* ----- Subtarefas na Timeline ----- */
 .vis-item.subtask {
-  border-style: dashed !important;
-  border-width: 1px !important;
+  /* border-style: dashed !important; - Se for essencial, manter. Senão, tentar sem. */
+  border: 1px dashed var(--text-color); /* Usar uma cor de variável */
   opacity: 0.9;
 }
 
 .vis-item.subtask .vis-item-content {
   font-style: italic;
-  padding-left: 24px !important;
+  padding-left: 24px; /* !important removido */
 }
 
 .vis-item.subtask.task-priority-high {
-  background-color: rgba(255, 65, 54, 0.85) !important;
+  background-color: rgba(255, 65, 54, 0.85); /* Levemente transparente */
+  /* !important removido */
 }
 
 .vis-item.subtask.task-priority-medium {
-  background-color: rgba(255, 220, 0, 0.85) !important;
+  background-color: rgba(255, 220, 0, 0.85);
+  /* !important removido */
 }
 
 .vis-item.subtask.task-priority-low {
-  background-color: rgba(46, 204, 64, 0.85) !important;
+  background-color: rgba(46, 204, 64, 0.85);
+  /* !important removido */
 }
 
-/* Tarefas de curta duração */
+/* ----- Tarefas de Curta Duração (Dots na Timeline) ----- */
 .vis-item.short-duration {
-  height: 32px !important;
-  min-width: 32px !important;
-  border-radius: 50% !important;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  /* !important removido */
 }
 
-/* Tooltip da timeline */
+/* ----- Tooltip da Timeline (vis-tooltip) ----- */
 .vis-tooltip {
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  border: none;
   padding: 10px;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   line-height: 1.5;
+  background-color: white;
+  border: none; /* Se for intencional, senão 1px solid #ccc */
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ----- Tooltip Customizado da Timeline ----- */
 .timeline-tooltip {
   max-width: 300px;
   padding: 12px;
@@ -386,6 +451,7 @@ select option {
   margin: 0 0 8px 0;
   color: var(--primary-color);
   font-weight: 600;
+  font-size: 1rem; /* Ajustar se necessário */
 }
 
 .timeline-tooltip p {
@@ -399,11 +465,11 @@ select option {
 }
 
 .timeline-tooltip p:first-of-type {
-  border-bottom: 1px solid #eee;
   padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
 }
 
-/* Elementos de texto gerais */
+/* ----- Elementos de Texto Gerais da Timeline ----- */
 .vis-time-axis .vis-text {
   font-size: 0.85rem;
   color: #666;
@@ -413,79 +479,74 @@ select option {
   font-weight: 600;
 }
 
-/* ========== EXPANDED ITEMS (IMPORTANTE) ========== */
+/* ----- Itens Expandidos na Timeline (IMPORTANTE) ----- */
+/* Esta seção contém muitos !important. Avaliar cuidadosamente se podem ser removidos
+   sem quebrar a funcionalidade de expansão da biblioteca vis.js. 
+   É comum que bibliotecas de terceiros exijam !important para sobrescrever seus próprios estilos internos. */
 
-/* Este é o seletor principal para itens expandidos */
-.vis-foreground .vis-item.expanded,
+.vis-item.expanded,
+.vis-foreground .vis-item.expanded, /* Seletores mais específicos da lib */
 .vis-content .vis-item.expanded,
-.vis-timeline .vis-item.expanded,
-.vis-item.expanded {
-  /* Configuração de posicionamento e z-index */
-  position: absolute !important;
-  z-index: 1000 !important;
+.vis-timeline .vis-item.expanded {
+  position: absolute !important; /* Essencial para sobrepor e posicionar corretamente */
+  z-index: 1000 !important;    /* Deve estar acima de tudo */
   
-  /* Dimensões e formato */
   min-height: 36px !important;
   min-width: 200px !important;
-  max-width: none !important;
-  width: auto !important;
+  max-width: none !important; /* Permitir que cresça conforme o conteúdo */
+  width: auto !important;     /* Ajustar ao conteúdo */
   border-radius: 12px !important;
   
-  /* Aparência */
   border: 2px solid var(--primary-color) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
   background-color: white !important;
   
-  /* Estado do item */
-  pointer-events: auto !important;
-  overflow: visible !important;
+  pointer-events: auto !important; /* Para interagir com o item expandido */
+  overflow: visible !important;    /* Para mostrar todo o conteúdo */
 }
 
-/* Conteúdo dentro dos itens expandidos */
 .vis-item.expanded .vis-item-content,
-.vis-item.expanded .timeline-item-content,
+.vis-item.expanded .timeline-item-content, /* Classes alternativas de conteúdo */
 .vis-item.expanded .full-content {
-  white-space: normal !important;
-  overflow: visible !important;
-  word-wrap: break-word !important;
-  word-break: break-word !important;
-  text-overflow: clip !important;
-  line-height: 1.4 !important;
-  border-radius: 10px !important;
-  padding: 8px 16px !important;
   display: block !important;
   width: auto !important;
   min-width: 180px !important;
   height: auto !important;
+  padding: 8px 16px !important;
+  border-radius: 10px !important; /* Raio interno, menor que o do container */
+  
   font-size: 0.95rem !important;
   color: #333 !important;
+  line-height: 1.4 !important;
+  white-space: normal !important; /* Permitir quebra de linha */
+  overflow: visible !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  text-overflow: clip !important; /* Não cortar texto */
 }
 
-/* Para tarefas curtas quando expandidas */
 .vis-item.short-duration.expanded {
+  /* Ajustes para itens "dot" quando expandidos */
   border-radius: 12px !important;
-  padding: 0 !important;
+  padding: 0 !important; /* O padding já está no content interno */
   min-width: 200px !important;
   min-height: 36px !important;
   height: auto !important;
   width: auto !important;
 }
 
-/* Fundo semi-transparente para garantir legibilidade */
+/* Fundo para garantir legibilidade do texto no item expandido */
 .vis-item.expanded::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  border-radius: 12px;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1; /* Atrás do conteúdo, mas dentro do item */
+  border-radius: 10px; /* Mesmo raio do .vis-item-content */
   background-color: white;
-  opacity: 0.98;
+  opacity: 0.98; /* Leve transparência se desejado, ou 1 para sólido */
 }
 
-/* Estilos específicos para os pontos indicadores */
+/* ----- Task Dots (Indicadores visuais dentro de itens) ----- */
 .task-dot {
   display: inline-block;
   width: 20px;
@@ -493,7 +554,7 @@ select option {
   border-radius: 50%;
   background-color: var(--primary-color);
   text-align: center;
-  line-height: 20px;
+  line-height: 20px; /* Para centralizar texto verticalmente se houver */
   font-weight: bold;
   color: #222;
 }
@@ -502,37 +563,15 @@ select option {
   border: 1px dashed #333;
 }
 
-/* ========== RESPONSIVIDADE ========== */
-
-@media (max-width: 768px) {
-  .filtro-group {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-container {
-    height: 500px;
-  }
-
-  .timeline-controls {
-    flex-wrap: wrap;
-  }
-  
-  /* Tarefas expandidas em telas menores */
-  .vis-item.expanded {
-    max-width: 300px !important;
-  }
-}
-
-/* Estilos para as bolinhas (tarefas curtas) */
+/* ----- Estilos para Timeline Dots (Tarefas Curtas como Bolinhas) ----- */
 .timeline-dot {
+  display: inline-block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  display: inline-block;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .timeline-dot:hover {
@@ -540,24 +579,8 @@ select option {
   box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
-/* Estilos para tarefas longas */
-.timeline-item-content {
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
-}
-
-.timeline-item-content:hover {
-  background-color: #f5f5f5;
-  transition: background 0.3s;
-}
-
-/* Configurações para prioridade nas bolinhas */
-.timeline-dot.task-priority-high,
+/* Prioridade nas Bolinhas */
+.timeline-dot.task-priority-high, /* Manter consistência com classes vis.js */
 .timeline-dot.priority-high {
   background-color: var(--priority-high);
 }
@@ -572,34 +595,87 @@ select option {
   background-color: var(--priority-low);
 }
 
-/* Status nas bolinhas */
-.timeline-dot.status-concluido {
-  opacity: 0.7;
-  border: 2px solid #28a745;
+/* Status nas Bolinhas */
+.timeline-dot.status-concluido { opacity: 0.7; border: 2px solid #28a745; }
+.timeline-dot.status-atrasado { border: 2px solid #dc3545; }
+.timeline-dot.status-andamento { border: 2px solid #007bff; }
+
+/* ----- Estilos para Conteúdo de Itens Longos na Timeline ----- */
+.timeline-item-content { /* Usado em conjunto com .vis-item-content ou como alternativa */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.timeline-dot.status-atrasado {
-  border: 2px solid #dc3545;
+.timeline-item-content:hover {
+  background-color: var(--hover-color); /* Usar variável */
 }
 
-.timeline-dot.status-andamento {
-  border: 2px solid #007bff;
+/* -------------------------------------------------------------------------- */
+/*                                  UTILITÁRIOS                               */
+/* -------------------------------------------------------------------------- */
+
+.text-accent {
+  color: var(--accent-color); /* !important removido, verificar necessidade */
 }
 
-/* Modal backdrop customizado */
-.modal.fade.show {
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1050;
-}
+/* Adicionar outras classes utilitárias conforme necessário (ex: .hidden, .text-center, etc.) */
 
-/* Animação para tarefas curtas */
+
+/* -------------------------------------------------------------------------- */
+/*                                  ANIMAÇÕES E TRANSIÇÕES ESPECÍFICAS        */
+/* -------------------------------------------------------------------------- */
+
+/* Animação para tarefas curtas (hover no container da bolinha) */
 .curta:hover .timeline-dot {
+  /* A transição já está no .timeline-dot:hover, esta regra pode ser redundante 
+     ou específica para um container .curta. Verificar HTML. */
   transform: scale(1.3);
-  transition: transform 0.2s ease;
 }
 
-/* Animação para tarefas longas */
+/* Animação para tarefas longas (hover no container do item) */
 .longa:hover .timeline-item-content {
-  background-color: #f5f5f5;
-  transition: background 0.3s;
+  /* A transição já está no .timeline-item-content:hover, esta regra pode ser redundante.
+     Verificar HTML. */
+  background-color: var(--hover-color);
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  RESPONSIVIDADE                            */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .filtro-group {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-container {
+    height: 500px; /* Altura fixa para mobile, pode ser ajustada */
+  }
+
+  .timeline-controls {
+    flex-wrap: wrap; /* Permitir que os controles quebrem linha */
+  }
+  
+  .vis-item.expanded {
+    max-width: 300px !important; /* Limitar largura máxima de itens expandidos em telas menores */
+    /* Outros ajustes para itens expandidos em mobile, se necessário */
+  }
+
+  /* Ajustes de fonte e padding para mobile, se necessário */
+  body {
+    font-size: 14px; /* Levemente menor em telas pequenas */
+  }
+
+  .app-header {
+    padding: 0.5rem;
+  }
+}
+
+/* Outros breakpoints podem ser adicionados aqui (ex: tablets, telas maiores) */
+

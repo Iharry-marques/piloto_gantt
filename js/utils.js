@@ -301,6 +301,6 @@ export function getTimelineOptions() {
     groupOrder: (a, b) => a.content.localeCompare(b.content),
     horizontalScroll: true,
     verticalScroll: true,
-    height: "600px"
+    height: "100%",
   };
 }

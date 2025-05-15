@@ -380,7 +380,6 @@ function criarTimeline(dados) {
     );
 
     const options = getTimelineOptions();
-    options.height = "800px";
 
     appState.timeline = new vis.Timeline(container, items, visGroups, options);
     appState.timeline.fit();
