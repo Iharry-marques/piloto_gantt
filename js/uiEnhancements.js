@@ -66,7 +66,8 @@ const UIEnhancer = (() => {
   /* ---------------------------- Densidade --------------------------- */
   function applyDensity(level) {
     const root = document.documentElement;
-    // "compact" mantém 10px do CSS base; "comfortable" sobe para 12px
+    // transformar em botão +  e - para aumentar/diminuir
+    // "compact" mantém 10px do CSS base; "comfortable" sobe para 13px
     root.style.fontSize = level === "compact" ? "10px" : "13px";
     localStorage.setItem("density", level);
     state.density = level;
