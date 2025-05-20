@@ -73,21 +73,49 @@ const UIEnhancer = (() => {
     state.density = level;
   }
 
-  function injectDensitySelect() {
-    const header = document.querySelector(".app-header .container-fluid");
-    if (!header) return;
+  function injectDensityButtons() {
+  const header = document.querySelector(".app-header .container-fluid");
+  if (!header) return;
 
-    const select = document.createElement("select");
-    select.className = "form-select form-select-sm w-auto";
-    select.title = "Densidade do layout";
-    select.innerHTML = `
-      <option value="compact">Compacto</option>
-      <option value="comfortable">Confortável</option>`;
-    select.value = state.density;
+  const container = document.createElement("div");
+  container.className = "btn-group ms-2";
 
-    select.addEventListener("change", () => applyDensity(select.value));
-    header.insertBefore(select, header.lastElementChild);
+  const compactoBtn = document.createElement("button");
+  compactoBtn.className = "btn btn-sm btn-control";
+  compactoBtn.innerHTML = "Compacto";
+
+  const confortavelBtn = document.createElement("button");
+  confortavelBtn.className = "btn btn-sm btn-control";
+  confortavelBtn.innerHTML = "Confortável";
+
+  // Aplica o estado inicial
+  updateDensityButtons();
+
+  compactoBtn.addEventListener("click", () => {
+    applyDensity("compact");
+    updateDensityButtons();
+  });
+
+  confortavelBtn.addEventListener("click", () => {
+    applyDensity("comfortable");
+    updateDensityButtons();
+  });
+
+  container.appendChild(compactoBtn);
+  container.appendChild(confortavelBtn);
+  header.insertBefore(container, header.lastElementChild);
+
+  function updateDensityButtons() {
+    if (state.density === "compact") {
+      compactoBtn.classList.add("active-density");
+      confortavelBtn.classList.remove("active-density");
+    } else {
+      confortavelBtn.classList.add("active-density");
+      compactoBtn.classList.remove("active-density");
+    }
   }
+}
+
 
   /* ---------------------- Timeline & Responsivo --------------------- */
   function resizeTimelines() {
@@ -161,18 +189,19 @@ const UIEnhancer = (() => {
 
   /* ------------------------------ Init ------------------------------ */
   function init() {
-    applyTheme(state.isDark);
-    applyDensity(state.density);
+  applyTheme(state.isDark);
+  applyDensity(state.density);
 
-    injectThemeToggle();
-    injectDensitySelect();
+  injectThemeToggle();
+  injectDensityButtons(); // ✅ aqui era o erro!
 
-    addCardReveal();
-    observeTimelineCreation();
-    resizeTimelines();
+  addCardReveal();
+  observeTimelineCreation();
+  resizeTimelines();
 
-    window.addEventListener("resize", resizeTimelines);
-  }
+  window.addEventListener("resize", resizeTimelines);
+}
+
 
   window.addEventListener("DOMContentLoaded", init);
 

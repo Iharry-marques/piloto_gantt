@@ -644,6 +644,21 @@ select option {
   background-color: var(--hover-color);
 }
 
+.btn-control.active-density {
+  background-color: var(--primary-color);
+  color: #222;
+  transform: scale(1.05);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-control {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-control:hover {
+  transform: scale(1.05);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                  RESPONSIVIDADE                            */
 /* -------------------------------------------------------------------------- */
