@@ -1,0 +1,75 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f4f4f9;
+  padding: 15px;
+  color: #333;
+}
+
+.kanban-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.kanban-column {
+  background-color: #ebedf0;
+  border-radius: 8px;
+  padding: 10px;
+  width: 300px;
+  max-height: 85vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.kanban-column-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #444;
+  text-align: center;
+  background-color: #d9dde4;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.kanban-card {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.kanban-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card-subtitle,
+.card-date,
+.card-client {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.subtask {
+  color: #aaa;
+}
+
+.responsavel {
+  font-weight: bold;
+  color: #555;
+}

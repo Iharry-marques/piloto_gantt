@@ -189,11 +189,11 @@ const UIEnhancer = (() => {
 
   /* ------------------------------ Init ------------------------------ */
   function init() {
-  applyTheme(state.isDark);
+  //applyTheme(state.isDark);
   applyDensity(state.density);
 
-  injectThemeToggle();
-  injectDensityButtons(); // ✅ aqui era o erro!
+  //injectThemeToggle();
+  injectDensityButtons(); // 
 
   addCardReveal();
   observeTimelineCreation();
