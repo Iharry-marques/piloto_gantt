@@ -1,0 +1,109 @@
+/**
+ * @file base.css
+ * @description Regras globais, variáveis, resets e estilos base para o Dashboard de Tarefas.
+ * @project Dashboard de Tarefas - SUNO
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                                  VARIÁVEIS GLOBAIS                         */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --primary-color: #ffc801; /* Cor primária principal, usada para destaques e elementos ativos */
+  --accent-color: #ffc801;  /* Cor de destaque, sinônimo da primária neste tema */
+  --text-color: #333333;    /* Cor padrão para textos */
+  --bg-color: #ffffff;      /* Cor de fundo principal da aplicação */
+  --card-bg: #ffffff;       /* Cor de fundo para cards e seções similares */
+
+  /* Cores de Prioridade */
+  --priority-high: #ff4136;   /* Vermelho para prioridade alta */
+  --priority-medium: #ffdc00; /* Amarelo para prioridade média */
+  --priority-low: #2ecc40;    /* Verde para prioridade baixa */
+
+  /* Cores de Status */
+  --status-concluido: #2ecc40; /* Verde para status concluído */
+  --status-atrasado: #ff4136;  /* Vermelho para status atrasado */
+  --status-andamento: #0074d9; /* Azul para status em andamento */
+
+  /* Cores Auxiliares */
+  --hover-color: #f0f0f0;     /* Cor para efeito hover em elementos interativos */
+  --subtask-color: #efefef;   /* Cor de fundo ou borda para subtarefas */
+
+  /* Dimensões de Layout */
+  --layout-overhead: 160px; /* Altura combinada de elementos fixos no topo (header, filtros) para cálculo de altura de containers */
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  ESTILOS DE BASE E RESET                   */
+/* -------------------------------------------------------------------------- */
+
+html {
+  font-size: 10px; /* Base para o modo compacto, pode ser ajustado */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa; /* Um cinza claro para o fundo geral */
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Estilos básicos para links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #e6ae00;
+}
+
+/* Estilos básicos para headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Estilos básicos para parágrafos */
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Estilos básicos para listas */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+/* Estilos básicos para imagens */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Animações globais */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Utilitários de texto */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+/* Utilitários de margem */
+.mb-0 { margin-bottom: 0; }
+.mt-3 { margin-top: 1rem; }

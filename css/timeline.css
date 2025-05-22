@@ -1,0 +1,242 @@
+/**
+ * @file timeline.css
+ * @description Estilos específicos para a visualização de timeline (Vis.js)
+ * @project Dashboard de Tarefas - SUNO
+ */
+
+/* -------------------------------------------------------------------------- */
+/*                                  ESTILOS DA TIMELINE (VIS.JS)              */
+/* -------------------------------------------------------------------------- */
+
+/* ----- Itens Básicos da Timeline (vis-item) ----- */
+.vis-item {
+  border-radius: 999px;
+  border-width: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  min-width: 80px;
+  cursor: pointer;
+  overflow: visible;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.vis-item .vis-item-content {
+  border-radius: 999px;
+  padding: 6px 16px;
+  overflow: visible;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ----- Prioridades de Tarefas na Timeline ----- */
+.vis-item.task-priority-high {
+  background-color: var(--priority-high);
+  color: white;
+  box-shadow: 0 2px 4px rgba(255, 65, 54, 0.2);
+}
+
+.vis-item.task-priority-medium {
+  background-color: var(--priority-medium);
+  color: #333;
+  box-shadow: 0 2px 4px rgba(255, 220, 0, 0.2);
+}
+
+.vis-item.task-priority-low {
+  background-color: var(--priority-low);
+  color: white;
+  box-shadow: 0 2px 4px rgba(46, 204, 64, 0.2);
+}
+
+/* ----- Seleção e Hover de Itens na Timeline ----- */
+.vis-item.vis-selected {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 200, 1, 0.5);
+  z-index: 10;
+}
+
+.vis-item:hover {
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ----- Subtarefas na Timeline ----- */
+.vis-item.subtask {
+  border: 1px dashed var(--text-color);
+  opacity: 0.9;
+}
+
+.vis-item.subtask .vis-item-content {
+  font-style: italic;
+  padding-left: 24px;
+}
+
+.vis-item.subtask.task-priority-high {
+  background-color: rgba(255, 65, 54, 0.85);
+}
+
+.vis-item.subtask.task-priority-medium {
+  background-color: rgba(255, 220, 0, 0.85);
+}
+
+.vis-item.subtask.task-priority-low {
+  background-color: rgba(46, 204, 64, 0.85);
+}
+
+/* ----- Tarefas de Curta Duração (Dots na Timeline) ----- */
+.vis-item.short-duration,
+.vis-item.curta {
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+}
+
+/* ----- Tooltip da Timeline (vis-tooltip) ----- */
+.vis-tooltip {
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ----- Tooltip Customizado da Timeline ----- */
+.timeline-tooltip {
+  max-width: 300px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-left: 4px solid var(--primary-color);
+}
+
+.timeline-tooltip h5 {
+  margin: 0 0 8px 0;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.timeline-tooltip p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.timeline-tooltip strong {
+  font-weight: 600;
+  color: #444;
+}
+
+.timeline-tooltip p:first-of-type {
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ----- Elementos de Texto Gerais da Timeline ----- */
+.vis-time-axis .vis-text {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.vis-group-label {
+  font-weight: 600;
+}
+
+/* ----- Itens Expandidos na Timeline ----- */
+.vis-item.expanded,
+.vis-foreground .vis-item.expanded,
+.vis-content .vis-item.expanded,
+.vis-timeline .vis-item.expanded {
+  position: absolute !important;
+  z-index: 1000 !important;
+  
+  min-height: 36px !important;
+  min-width: 200px !important;
+  max-width: none !important;
+  width: auto !important;
+  border-radius: 12px !important;
+  
+  border: 2px solid var(--primary-color) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  background-color: white !important;
+  
+  pointer-events: auto !important;
+  overflow: visible !important;
+}
+
+.vis-item.expanded .vis-item-content,
+.vis-item.expanded .timeline-item-content,
+.vis-item.expanded .full-content {
+  display: block !important;
+  width: auto !important;
+  min-width: 180px !important;
+  height: auto !important;
+  padding: 8px 16px !important;
+  border-radius: 10px !important;
+  
+  font-size: 0.95rem !important;
+  color: #333 !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  text-overflow: clip !important;
+}
+
+.vis-item.short-duration.expanded,
+.vis-item.curta.expanded {
+  border-radius: 12px !important;
+  padding: 0 !important;
+  min-width: 200px !important;
+  min-height: 36px !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+/* Fundo para garantir legibilidade do texto no item expandido */
+.vis-item.expanded::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  border-radius: 10px;
+  background-color: white;
+  opacity: 0.98;
+}
+
+/* ----- Task Dots (Indicadores visuais dentro de itens) ----- */
+.task-dot {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  color: #222;
+}
+
+.vis-item.subtask .task-dot {
+  border: 1px dashed #333;
+}
+
+/* ----- Estilos para Timeline Dots (Tarefas Curtas como Bolinhas) ----- */
+.timeline-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-dot:hover {
+  transform: scale(1.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
